@@ -102,6 +102,7 @@ def get_state_path(branch: str) -> str:
 def main() -> None:
     """Main function."""
     print("GitHub Action Indexer - Starting...")
+    print(f"Current working directory: {os.getcwd()}")
 
     try:
         # Load configuration
@@ -111,7 +112,9 @@ def main() -> None:
         print(f"Repository: {config.owner}/{config.repo}")
         print(f"Branch: {config.branch}")
         print(f"Commit ref: {config.currentCommit}")
-        print(f"State path: {state_path}")
+        # print(f"State path: {state_path}")
+        print(f"State path (relative): {state_path}")
+        print(f"State path (absolute): {os.path.abspath(state_path)}")
 
         # Create DirectContext
         context = DirectContext.create(api_key=config.apiToken, api_url=config.apiUrl)

@@ -112,11 +112,16 @@ class IndexManager:
             state: The IndexState to save.
         """
         # Ensure directory exists
-        Path(self._state_path).parent.mkdir(parents=True, exist_ok=True)
+        # Path(self._state_path).parent.mkdir(parents=True, exist_ok=True)
+        state_dir = Path(self._state_path).parent
+        state_dir.mkdir(parents=True, exist_ok=True)
+        print(f"Saving state to {self._state_path}")
 
         # Write state to file
         with open(self._state_path, "w", encoding="utf-8") as f:
             json.dump(state, f, indent=2)
+        
+        print(f"State saved successfully ({Path(self._state_path).stat().st_size} bytes)")
 
     def index(self) -> IndexResult:
         """
