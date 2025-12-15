@@ -77,4 +77,5 @@ jobs:
           name: index-state
           path: .augment-index-state/
           retention-days: 30
+          include-hidden-files: true
 
